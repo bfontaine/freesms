@@ -8,7 +8,7 @@ See:
 .. moduleauthor:: Baptiste Fontaine <b@ptistefontaine.fr>
 """
 
-from requests import get as GET
+import requests
 
 __version__ = '0.1.0'
 
@@ -75,5 +75,12 @@ class FreeClient(object):
             'pass': self._passwd,
             'msg': text
         }
-        res = GET(FreeClient.BASE_URL, params=params, **kw)
+
+        kw.setdefault("verify", False)
+
+        if not kw["verify"]:
+            # remove SSL warning
+            requests.packages.urllib3.disable_warnings()
+
+        res = requests.get(FreeClient.BASE_URL, params=params, **kw)
         return FreeResponse(res.status_code)
