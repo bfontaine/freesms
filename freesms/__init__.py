@@ -12,6 +12,7 @@ import requests
 
 __version__ = '0.1.0'
 
+
 class FreeResponse(object):
     """
     An API call response. This is a boolean-like with a ``status_code``
@@ -24,17 +25,14 @@ class FreeResponse(object):
         """
         self.status_code = code
 
-
     def success(self):
         return self.status_code == 200
-
 
     def error(self):
         """
         Return true only if this response don't have a 200 (OK) status code.
         """
         return not self.success()
-
 
     def __nonzero__(self):
         """
@@ -43,13 +41,11 @@ class FreeResponse(object):
         """
         return self.success()
 
-
     def __bool__(self):
         """
         See ``__nonzero__`` (this is for Python 3 compatibility).
         """
         return self.__nonzero__()
-
 
 
 class FreeClient(object):
@@ -62,7 +58,6 @@ class FreeClient(object):
         """
         self._user = user
         self._passwd = passwd
-
 
     def send_sms(self, text, **kw):
         """
