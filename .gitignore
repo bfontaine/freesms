@@ -1,0 +1,12 @@
+*~
+.*.sw*
+*.pyc
+__pycache__
+.DS_Store
+*.egg-info
+.coverage
+.tox
+/venv
+/htmlcov
+/dist
+/docs/_*

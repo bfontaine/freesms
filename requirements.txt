@@ -1,0 +1,7 @@
+coverage==3.7.1
+pep8==1.5.4
+py==1.4.26
+requests==2.5.1
+tox==1.7.1
+virtualenv==1.11.4
+wsgiref==0.1.2
