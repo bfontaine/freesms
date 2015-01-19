@@ -18,7 +18,7 @@ ifdef TRAVIS_PYTHON_VERSION
 PY_VERSION_SHORT:=$(TRAVIS_PYTHON_VERSION)
 endif
 
-.PHONY: check check-versions stylecheck covercheck coverhtml docs
+.PHONY: check check-versions stylecheck covercheck coverhtml
 
 default: deps check-versions
 
@@ -53,12 +53,8 @@ coverhtml:
 clean:
 	find . -name '*~' -delete
 	rm -f $(COVERFILE)
-	make -C docs clean
 
 publish: stylecheck check-versions
 	cp README.rst README
 	$(BINUTILS)/python setup.py sdist upload
 	rm -f README
-
-docs:
-	make -C docs html
