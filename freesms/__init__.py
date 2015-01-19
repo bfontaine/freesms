@@ -36,12 +36,19 @@ class FreeResponse(object):
         return not self.success()
 
 
-    def __empty__(self):
+    def __nonzero__(self):
         """
-        Alias for ``.error()``. This allows you to use a ``FreeResponse`` as a
-        boolean-like: it'll be falsy if there was an error.
+        Alias for ``.success()``. This allows you to use a ``FreeResponse`` as
+        a boolean-like: it'll be falsy if there was an error, truthy if not.
         """
-        return self.error()
+        return self.success()
+
+
+    def __bool__(self):
+        """
+        See ``__nonzero__`` (this is for Python 3 compatibility).
+        """
+        return self.__nonzero__()
 
 
 
