@@ -17,7 +17,8 @@ freesms
 .. image:: https://img.shields.io/pypi/dm/freesms.png
    :target: https://pypi.python.org/pypi/freesms
 
-``freesms`` is a compact trie implementation in Python.
+``freesms`` is a Python interface for Free Mobile SMS API. If you subscribed to
+their service it allows you to programmatically send SMSes to yourself.
 
 Install
 -------
