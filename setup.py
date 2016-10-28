@@ -1,12 +1,13 @@
 # -*- coding: UTF-8 -*-
 
-import setuptools
+import io
 from distutils.core import setup
 
 # http://stackoverflow.com/a/7071358/735926
 import re
 VERSIONFILE='freesms/__init__.py'
-verstrline = open(VERSIONFILE, 'rt').read()
+# In Python 2.x open() doesn't support the encoding keyword parameter.
+verstrline = io.open(VERSIONFILE, encoding='utf-8').read()
 VSRE = r'^__version__\s+=\s+[\'"]([^\'"]+)[\'"]'
 mo = re.search(VSRE, verstrline, re.M)
 if mo:
@@ -21,7 +22,7 @@ setup(
     author_email='b@ptistefontaine.fr',
     packages=['freesms'],
     url='https://github.com/bfontaine/freesms',
-    license=open('LICENSE', 'r').read(),
+    license=io.open('LICENSE', encoding='utf-8').read().encode("utf-8"),
     description='Send SMS with Free Mobile',
     long_description="""\
 freesms is a Python interface to Free mobile SMS API.""",
