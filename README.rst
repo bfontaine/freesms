@@ -14,9 +14,6 @@ freesms
    :target: https://pypi.python.org/pypi/freesms
    :alt: Pypi package
 
-.. image:: https://img.shields.io/pypi/dm/freesms.png
-   :target: https://pypi.python.org/pypi/freesms
-
 ``freesms`` is a Python interface for Free Mobile SMS API. If you subscribed to
 their service it allows you to programmatically send SMSes to yourself.
 
