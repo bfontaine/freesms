@@ -9,6 +9,7 @@ See:
 """
 
 import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 __version__ = '0.1.1'
 
@@ -75,7 +76,7 @@ class FreeClient(object):
 
         if not kw["verify"]:
             # remove SSL warning
-            requests.packages.urllib3.disable_warnings()
+            requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
         res = requests.get(FreeClient.BASE_URL, params=params, **kw)
         return FreeResponse(res.status_code)
