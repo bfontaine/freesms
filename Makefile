@@ -60,7 +60,7 @@ clean:
 	find . -name '*~' -delete
 	rm -f $(COVERFILE)
 
-publish: stylecheck check-versions
+publish: stylecheck
 	cp README.rst README
 	$(BINUTILS)/python setup.py sdist upload
 	rm -f README
