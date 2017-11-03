@@ -26,7 +26,11 @@ deps: $(VENV)
 	$(PIP) install -qr requirements.txt
 ifneq ($(PY_VERSION_SHORT),3.3)
 ifneq ($(PY_VERSION_SHORT),3.4)
+ifneq ($(PY_VERSION_SHORT),3.5)
+ifneq ($(PY_VERSION_SHORT),3.6)
 	$(PIP) install -q wsgiref==0.1.2
+endif
+endif
 endif
 endif
 
