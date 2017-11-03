@@ -3,7 +3,7 @@
 """
 This module provides a Python interface to Free Mobile SMS API.
 See:
-    http://mobile.free.fr/
+    https://mobile.free.fr/
 
 .. moduleauthor:: Baptiste Fontaine <b@ptistefontaine.fr>
 """
@@ -11,7 +11,7 @@ See:
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 
 class FreeResponse(object):
