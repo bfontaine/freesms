@@ -24,6 +24,7 @@ setup(
     url='https://github.com/bfontaine/freesms',
     license=io.open('LICENSE', encoding='utf-8').read().encode("utf-8"),
     description='Send SMS with Free Mobile',
+    install_requires=["requests"],
     long_description="""\
 freesms is a Python interface to Free mobile SMS API.""",
     classifiers=[
