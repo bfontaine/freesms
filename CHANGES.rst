@@ -1,3 +1,9 @@
+v0.1.2 (2017/11/03)
+-------------------
+
+- Fix an insecure request warning when not using ``verify=True``. Contributed
+  by @nalepae
+
 v0.1.1 (2016/10/28)
 -------------------
 
