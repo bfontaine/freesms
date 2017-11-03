@@ -23,21 +23,23 @@ endif
 default: deps check-versions
 
 deps: $(VENV)
-	$(PIP) install -qr requirements.txt
+	$(PIP) install -r requirements.txt
 ifneq ($(PY_VERSION_SHORT),3.3)
 ifneq ($(PY_VERSION_SHORT),3.4)
 ifneq ($(PY_VERSION_SHORT),3.5)
 ifneq ($(PY_VERSION_SHORT),3.6)
-	$(PIP) install -q wsgiref==0.1.2
+	echo "$(PY_VERSION_SHORT)"
+	$(PIP) install wsgiref==0.1.2
 endif
 endif
 endif
 endif
 
 $(VENV):
-	virtualenv $@
+	virtualenv --python python2 $@
+	$(VENV)/bin/pip install -r requirements.txt
 
-check:
+check: deps
 	$(PYTHON) tests/test.py
 
 check-versions:
