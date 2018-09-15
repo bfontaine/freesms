@@ -2,10 +2,15 @@
 
 import unittest
 from httmock import all_requests, response, HTTMock
+from requests import exceptions
 
 from freesms import FreeClient, FreeResponse
 
 CODES = [200, 400, 500]
+EXCEPTIONS = (('Request', exceptions.RequestException),
+              ('Connection', exceptions.ConnectionError),
+              ('Timeout', exceptions.Timeout))
+
 
 @all_requests
 def smsapi_mock(url, request):
@@ -13,6 +18,9 @@ def smsapi_mock(url, request):
     for code in CODES:
         if "code%s" % code in qry:
             return response(code)
+    for name, exc in EXCEPTIONS:
+        if "exception%s" % name in qry:
+                raise exc
     return response(404)
 
 
@@ -59,3 +67,24 @@ class TestSMS(unittest.TestCase):
 
         self.assertTrue(ok.__bool__())
         self.assertFalse(ko.__bool__())
+
+    def test_connection_error(self):
+        with HTTMock(smsapi_mock):
+            resp = self.client.send_sms("oops exceptionConnectionError")
+
+        self.assertFalse(bool(resp))
+        self.assertEquals(resp.status_code, 444)
+
+    def test_timeout_error(self):
+        with HTTMock(smsapi_mock):
+            resp = self.client.send_sms("oops exceptionTimeout")
+
+        self.assertFalse(bool(resp))
+        self.assertEquals(resp.status_code, 499)
+
+    def test_requests_error(self):
+        with HTTMock(smsapi_mock):
+            resp = self.client.send_sms("oops exceptionRequest")
+
+        self.assertFalse(bool(resp))
+        self.assertEquals(resp.status_code, 444)

@@ -10,6 +10,7 @@ See:
 
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from requests.exceptions import Timeout, ConnectionError, RequestException
 
 __version__ = '0.1.2'
 
@@ -78,5 +79,12 @@ class FreeClient(object):
             # remove SSL warning
             requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-        res = requests.get(FreeClient.BASE_URL, params=params, **kw)
-        return FreeResponse(res.status_code)
+        try:
+            res = requests.get(FreeClient.BASE_URL, params=params, **kw)
+            return FreeResponse(res.status_code)
+        except ConnectionError:
+            return FreeResponse(444)
+        except Timeout:
+            return FreeResponse(499)
+        except RequestException:
+            return FreeResponse(444)
