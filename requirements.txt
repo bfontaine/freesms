@@ -2,6 +2,6 @@ coverage==3.7.1
 httmock==1.2.2
 pep8==1.5.4
 py==1.4.26
-requests==2.5.1
+requests==2.20.0
 tox==1.7.1
 virtualenv==1.11.4
