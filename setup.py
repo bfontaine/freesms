@@ -22,7 +22,7 @@ setup(
     author_email='b@ptistefontaine.fr',
     packages=['freesms'],
     url='https://github.com/bfontaine/freesms',
-    license=io.open('LICENSE', encoding='utf-8').read().encode("utf-8"),
+    license="MIT",
     description='Send SMS with Free Mobile',
     install_requires=["requests"],
     long_description="""\
