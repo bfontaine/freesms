@@ -9,7 +9,6 @@ See:
 """
 
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 __version__ = '0.2.0'
 
@@ -60,7 +59,7 @@ class FreeClient(object):
         self._user = user
         self._passwd = passwd
 
-    def send_sms(self, text, **kw):
+    def send_sms(self, text, **kwargs):
         """
         Send an SMS. Since Free only allows us to send SMSes to ourselves you
         don't have to provide your phone number.
@@ -72,11 +71,5 @@ class FreeClient(object):
             'msg': text
         }
 
-        kw.setdefault("verify", False)
-
-        if not kw["verify"]:
-            # remove SSL warning
-            requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-
-        res = requests.get(FreeClient.BASE_URL, params=params, **kw)
+        res = requests.get(FreeClient.BASE_URL, params=params, **kwargs)
         return FreeResponse(res.status_code)
