@@ -1,8 +1,9 @@
 # FreeSMS Changelog
 
-## Unreleased
+## v0.2.0 (Unreleased)
 
 - Fix license string in `setup.py` (#7 by @cdce8p)
+- Drop official support for Python 2.x. It probably works, but it’s not tested anymore.
 
 ## v0.1.2 (2017/11/03)
 

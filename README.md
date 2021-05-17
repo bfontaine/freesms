@@ -10,7 +10,7 @@ Install
 
     [sudo] pip install freesms
 
-The library works with Python 2.7 and 3.x.
+Starting from v0.2.0 the library is only tested on Python 3.x, but it should work on 2.7.
 
 Usage
 -----
