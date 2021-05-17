@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -U mypy
+        pip install -U setuptools wheel twine mypy
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with mypy
       run: mypy setup.py freesms
