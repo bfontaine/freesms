@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 
+# type: ignore
 from setuptools import setup
 
 # http://stackoverflow.com/a/7071358/735926
