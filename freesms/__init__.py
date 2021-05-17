@@ -11,7 +11,7 @@ See:
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
-__version__ = '0.1.2'
+__version__ = '0.2.0'
 
 
 class FreeResponse(object):
