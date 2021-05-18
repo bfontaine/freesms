@@ -4,6 +4,7 @@
 
 - `FreeResponse` now have a reference to the underlying `requests.Response` object
 - `FreeResponse#success` now returns the result of `requests.Response#ok`
+- `FreeClient` now accepts a `password=` argument by default. The previous wording `passwd=` is still supported
 
 ## v0.2.0 (2021/05/17)
 

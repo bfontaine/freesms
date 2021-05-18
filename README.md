@@ -10,7 +10,7 @@ Install
 
     [sudo] pip install freesms
 
-Starting from v0.2.0 the library is only tested on Python 3.x, but it should work on 2.7.
+Starting from v0.2.0 the library only supports Python 3.x.
 
 Usage
 -----
@@ -18,7 +18,7 @@ Usage
 ```python
 from freesms import FreeClient
 
-f = FreeClient(user="...", passwd="...")
+f = FreeClient(user="...", password="...")
 resp = f.send_sms("hello this is my SMS")
 resp.status_code  # 200
 ```

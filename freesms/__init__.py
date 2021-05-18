@@ -38,12 +38,7 @@ class FreeResponse(object):
         """
         return not self.success()
 
-    def __bool__(self):
-        """
-        Alias for ``.success()``. This allows you to use a ``FreeResponse`` as
-        a boolean-like: it'll be falsy if there was an error, truthy if not.
-        """
-        return self.success()
+    __bool__ = success
 
     # Python 2 compat
     __nonzero__ = __bool__
@@ -52,18 +47,20 @@ class FreeResponse(object):
 class FreeClient(object):
     BASE_URL = 'https://smsapi.free-mobile.fr/sendmsg'
 
-    def __init__(self, user, passwd):
+    def __init__(self, user, password=None, passwd=None):
         """
-        Create a new Free Mobile SMS API client. Each client is tied to a phone
-        number.
+        Create a new Free Mobile SMS API client. Each client is tied to a phone number.
+
+        :param user: username
+        :param password: password
+        :param passwd: alias for ``password``.
         """
         self._user = user
-        self._passwd = passwd
+        self._passwd = password or passwd
 
     def send_sms(self, text, **kwargs):
         """
-        Send an SMS. Since Free only allows us to send SMSes to oneself
-        you don't have to provide your phone number.
+        Send an SMS. Free only allows us to send SMSes to oneself, so you don't have to provide your phone number.
 
         :param text: text of the message
         :param kwargs: keyword arguments passed to the underlying ``requests.get`` call
