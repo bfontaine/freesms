@@ -56,7 +56,7 @@ class FreeClient(object):
         :param passwd: alias for ``password``.
         """
         self._user = user
-        self._passwd = password or passwd
+        self._password = password or passwd
 
     def send_sms(self, text, **kwargs):
         """
@@ -69,7 +69,7 @@ class FreeClient(object):
 
         params = {
             'user': self._user,
-            'pass': self._passwd,
+            'pass': self._password,
             'msg': text
         }
 
