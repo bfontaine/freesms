@@ -38,18 +38,15 @@ class FreeResponse(object):
         """
         return not self.success()
 
-    def __nonzero__(self):
+    def __bool__(self):
         """
         Alias for ``.success()``. This allows you to use a ``FreeResponse`` as
         a boolean-like: it'll be falsy if there was an error, truthy if not.
         """
         return self.success()
 
-    def __bool__(self):
-        """
-        See ``__nonzero__`` (this is for Python 3 compatibility).
-        """
-        return self.__nonzero__()
+    # Python 2 compat
+    __nonzero__ = __bool__
 
 
 class FreeClient(object):
