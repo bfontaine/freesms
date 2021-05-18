@@ -1,5 +1,10 @@
 # FreeSMS Changelog
 
+## Unreleased
+
+- `FreeResponse` now have a reference to the underlying `requests.Response` object
+- `FreeResponse#success` now returns the result of `requests.Response#ok`
+
 ## v0.2.0 (2021/05/17)
 
 - Fix license string in `setup.py` (#7 by @cdce8p)

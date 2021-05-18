@@ -19,18 +19,22 @@ class FreeResponse(object):
     attribute.
     """
 
-    def __init__(self, code):
+    def __init__(self, response):
         """
-        Create a new response from the given status code.
+        :param response: requests.Response object
         """
-        self.status_code = code
+        self._response = response
+
+    @property
+    def status_code(self):
+        return self._response.status_code
 
     def success(self):
-        return self.status_code == 200
+        return self._response.ok
 
     def error(self):
         """
-        Return true only if this response don't have a 200 (OK) status code.
+        Return true only if this response don't have a 20x (OK and similar) status code.
         """
         return not self.success()
 
@@ -61,8 +65,12 @@ class FreeClient(object):
 
     def send_sms(self, text, **kwargs):
         """
-        Send an SMS. Since Free only allows us to send SMSes to ourselves you
-        don't have to provide your phone number.
+        Send an SMS. Since Free only allows us to send SMSes to oneself
+        you don't have to provide your phone number.
+
+        :param text: text of the message
+        :param kwargs: keyword arguments passed to the underlying ``requests.get`` call
+        :return: FreeResponse
         """
 
         params = {
@@ -71,5 +79,5 @@ class FreeClient(object):
             'msg': text
         }
 
-        res = requests.get(FreeClient.BASE_URL, params=params, **kwargs)
-        return FreeResponse(res.status_code)
+        response = requests.get(self.BASE_URL, params=params, **kwargs)
+        return FreeResponse(response)

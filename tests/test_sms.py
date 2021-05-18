@@ -7,8 +7,9 @@ from freesms import FreeClient, FreeResponse
 
 CODES = [200, 400, 500]
 
+
 @all_requests
-def smsapi_mock(url, request):
+def smsapi_mock(url, _request):
     qry = url.query
     for code in CODES:
         if "code%s" % code in qry:
@@ -47,15 +48,15 @@ class TestSMS(unittest.TestCase):
         self.assertFalse(resp.error())
 
     def test_py2_bool_resp(self):
-        ok = FreeResponse(200)
-        ko = FreeResponse(400)
+        ok = FreeResponse(response(200))
+        ko = FreeResponse(response(400))
 
         self.assertTrue(ok.__nonzero__())
         self.assertFalse(ko.__nonzero__())
 
     def test_py3_bool_resp(self):
-        ok = FreeResponse(200)
-        ko = FreeResponse(400)
+        ok = FreeResponse(response(200))
+        ko = FreeResponse(response(400))
 
         self.assertTrue(ok.__bool__())
         self.assertFalse(ko.__bool__())
