@@ -1,8 +1,9 @@
 # FreeSMS Changelog
 
-## v0.3.0 (unreleased)
+## v0.3.0 (2025/03/20)
 
 - Drop support for Python 3.3, 3.4, 3.5, 3.6, 3.7
+- Add official support for Python 3.10, 3.11, 3.12, 3.13
 
 ## v0.2.1 (2025/03/20)
 
