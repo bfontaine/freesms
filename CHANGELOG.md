@@ -1,5 +1,9 @@
 # FreeSMS Changelog
 
+## v0.3.0 (unreleased)
+
+- Drop support for Python 3.3, 3.4, 3.5, 3.6, 3.7
+
 ## v0.2.1 (2025/03/20)
 
 - `FreeResponse` now have a reference to the underlying `requests.Response` object

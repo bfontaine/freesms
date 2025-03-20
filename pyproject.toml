@@ -1,0 +1,48 @@
+[project]
+name = "freesms"
+version = "0.3.0"
+description = "Send SMSes with Free Mobile"
+license = "MIT"
+authors = [
+    { name = "Baptiste Fontaine", email = "b@ptistefontaine.fr" }
+]
+packages = [
+    { include = "freesms" },
+]
+include = ["freesms/py.typed"]
+classifiers = [
+    'License :: OSI Approved :: MIT License',
+    "Development Status :: 5 - Production/Stable",
+    'Programming Language :: Python :: 3',
+]
+keywords = [
+    "free", "free-mobile", "sms",
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)"
+]
+
+[tool.poetry.group.dev.dependencies]
+httmock = "^1.4.0"
+pytest = "^8.3.5"
+mypy = "^1"
+coverage = "^7.6.0"
+types-requests = "*"
+pytest-cov = "^5.0" # v6 requires Python 3.9
+ruff = "^0.11.0"
+
+[tool.coverage.report]
+omit = ["tests/*"]
+exclude_lines = [
+    "pragma: nocover",
+    "raise NotImplementedError",
+    "except ImportError:",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
