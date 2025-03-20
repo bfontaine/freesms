@@ -2,23 +2,16 @@
 
 ## Run the tests
 
-    python3 tests/test.py
+    ./ci.sh
 
-## Release a new version
+## Making a release
 
-Ensure you have up-to-date distributing tools:
+1. Update the CHANGELOG
+2. Update the version in `pyproject.toml` and in `freesms/__init__.py`
+3. Commit and tag with `v` followed by the version (e.g. `git tag v0.2.1`)
+4. Push (without the tag) and wait for the [CI job][ci1] to succeed
+5. Push the tag
+6. Wait for the [CI job][ci2] to finish
 
-    python3 -m pip install --upgrade pip setuptools wheel twine
-
-Then:
-
-1. Update the Changelog
-2. Bump the version in `freesms/__init__.py`
-3. Ensure the tests pass
-4. Commit and tag
-5. `rm -rf dist/*`
-6. `python3 setup.py sdist bdist_wheel`
-7. `twine check dist/*`
-8. `twine upload dist/*`
-
-[More info here](https://packaging.python.org/tutorials/packaging-projects/).
+[ci1]: https://github.com/bfontaine/freesms/actions/workflows/build.yml
+[ci2]: https://github.com/bfontaine/freesms/actions/workflows/publish.yml
