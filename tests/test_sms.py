@@ -1,6 +1,4 @@
-# -*- coding: UTF-8 -*-
-
-import unittest
+import pytest
 from httmock import all_requests, response, HTTMock
 
 from freesms import FreeClient, FreeResponse
@@ -17,46 +15,50 @@ def smsapi_mock(url, _request):
     return response(404)
 
 
-class TestSMS(unittest.TestCase):
+@pytest.fixture(scope="session")
+def client():
+    return FreeClient(user="someuser", passwd="secret")
 
-    def setUp(self):
-        self.client = FreeClient(user="someuser", passwd="secret")
 
-    def test_500(self):
-        with HTTMock(smsapi_mock):
-            resp = self.client.send_sms("oops code500 error")
+def test_500(client):
+    with HTTMock(smsapi_mock):
+        resp = client.send_sms("oops code500 error")
 
-        self.assertFalse(bool(resp))
-        self.assertEqual(resp.status_code, 500)
-        self.assertFalse(resp.success())
-        self.assertTrue(resp.error())
+    assert not resp
+    assert resp.status_code == 500
+    assert not resp.success()
+    assert resp.error()
 
-    def test_400(self):
-        with HTTMock(smsapi_mock):
-            resp = self.client.send_sms("oops code400 error")
 
-        self.assertFalse(bool(resp))
-        self.assertEqual(resp.status_code, 400)
+def test_400(client):
+    with HTTMock(smsapi_mock):
+        resp = client.send_sms("oops code400 error")
 
-    def test_200(self):
-        with HTTMock(smsapi_mock):
-            resp = self.client.send_sms("oops code200 error")
+    assert not resp
+    assert resp.status_code == 400
 
-        self.assertTrue(bool(resp))
-        self.assertEqual(resp.status_code, 200)
-        self.assertTrue(resp.success())
-        self.assertFalse(resp.error())
 
-    def test_py2_bool_resp(self):
-        ok = FreeResponse(response(200))
-        ko = FreeResponse(response(400))
+def test_200(client):
+    with HTTMock(smsapi_mock):
+        resp = client.send_sms("code200")
 
-        self.assertTrue(ok.__nonzero__())
-        self.assertFalse(ko.__nonzero__())
+    assert resp
+    assert resp.status_code == 200
+    assert resp.success()
+    assert not resp.error()
 
-    def test_py3_bool_resp(self):
-        ok = FreeResponse(response(200))
-        ko = FreeResponse(response(400))
 
-        self.assertTrue(ok.__bool__())
-        self.assertFalse(ko.__bool__())
+def test_py2_bool_resp():
+    ok = FreeResponse(response(200))
+    ko = FreeResponse(response(400))
+
+    assert ok.__nonzero__() is True
+    assert ko.__nonzero__() is False
+
+
+def test_py3_bool_resp():
+    ok = FreeResponse(response(200))
+    ko = FreeResponse(response(400))
+
+    assert ok.__bool__() is True
+    assert ko.__bool__() is False
