@@ -13,7 +13,7 @@ import freesms
 
 class TestVersion(unittest.TestCase):
     def test_version(self):
-        self.assertRegexpMatches(freesms.__version__, r'^\d+\.\d+\.\d+')
+        self.assertRegex(freesms.__version__, r'^\d+\.\d+\.\d+')
 
 
 if __name__ == '__main__':

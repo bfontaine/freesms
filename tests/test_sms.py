@@ -27,7 +27,7 @@ class TestSMS(unittest.TestCase):
             resp = self.client.send_sms("oops code500 error")
 
         self.assertFalse(bool(resp))
-        self.assertEquals(resp.status_code, 500)
+        self.assertEqual(resp.status_code, 500)
         self.assertFalse(resp.success())
         self.assertTrue(resp.error())
 
@@ -36,14 +36,14 @@ class TestSMS(unittest.TestCase):
             resp = self.client.send_sms("oops code400 error")
 
         self.assertFalse(bool(resp))
-        self.assertEquals(resp.status_code, 400)
+        self.assertEqual(resp.status_code, 400)
 
     def test_200(self):
         with HTTMock(smsapi_mock):
             resp = self.client.send_sms("oops code200 error")
 
         self.assertTrue(bool(resp))
-        self.assertEquals(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 200)
         self.assertTrue(resp.success())
         self.assertFalse(resp.error())
 
