@@ -1,6 +1,6 @@
 # FreeSMS Changelog
 
-## Unreleased
+## v0.2.1 (2025/03/20)
 
 - `FreeResponse` now have a reference to the underlying `requests.Response` object
 - `FreeResponse#success` now returns the result of `requests.Response#ok`
