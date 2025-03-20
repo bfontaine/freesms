@@ -5,6 +5,7 @@ See:
 
 .. moduleauthor:: Baptiste Fontaine <b@ptistefontaine.fr>
 """
+from typing import Union
 
 import requests
 
@@ -43,8 +44,8 @@ class FreeClient:
     BASE_URL = 'https://smsapi.free-mobile.fr/sendmsg'
 
     def __init__(self, user: str,
-                 password: str | None = None,
-                 passwd: str | None = None):
+                 password: Union[str, None] = None,
+                 passwd: Union[str, None] = None):
         """
         Create a new Free Mobile SMS API client. Each client is tied to a phone number.
 
