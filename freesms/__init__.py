@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 """
 This module provides a Python interface to Free Mobile SMS API.
 See:
@@ -13,13 +11,13 @@ import requests
 __version__ = '0.3.0'
 
 
-class FreeResponse(object):
+class FreeResponse:
     """
     An API call response. This is a boolean-like with a ``status_code``
     attribute.
     """
 
-    def __init__(self, response):
+    def __init__(self, response: requests.Response):
         """
         :param response: requests.Response object
         """
@@ -40,14 +38,13 @@ class FreeResponse(object):
 
     __bool__ = success
 
-    # Python 2 compat
-    __nonzero__ = __bool__
 
-
-class FreeClient(object):
+class FreeClient:
     BASE_URL = 'https://smsapi.free-mobile.fr/sendmsg'
 
-    def __init__(self, user, password=None, passwd=None):
+    def __init__(self, user: str,
+                 password: str | None = None,
+                 passwd: str | None = None):
         """
         Create a new Free Mobile SMS API client. Each client is tied to a phone number.
 
@@ -55,10 +52,13 @@ class FreeClient(object):
         :param password: password
         :param passwd: alias for ``password``.
         """
+        assert password is not None or passwd is not None, \
+            "The password cannot be None."
+
         self._user = user
         self._password = password or passwd
 
-    def send_sms(self, text, **kwargs):
+    def send_sms(self, text: str, **kwargs):
         """
         Send an SMS. Free only allows us to send SMSes to oneself, so you don't have to provide your phone number.
 

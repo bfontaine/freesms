@@ -1,5 +1,11 @@
 # FreeSMS Changelog
 
+## Unreleased
+
+- Add type hints
+- Raise an exception if no password is provided
+- Remove `FreeResponse.__nonzero__` (Python 2 compatibility)
+
 ## v0.3.0 (2025/03/20)
 
 - Drop support for Python 3.3, 3.4, 3.5, 3.6, 3.7

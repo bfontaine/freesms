@@ -48,14 +48,6 @@ def test_200(client):
     assert not resp.error()
 
 
-def test_py2_bool_resp():
-    ok = FreeResponse(response(200))
-    ko = FreeResponse(response(400))
-
-    assert ok.__nonzero__() is True
-    assert ko.__nonzero__() is False
-
-
 def test_py3_bool_resp():
     ok = FreeResponse(response(200))
     ko = FreeResponse(response(400))
