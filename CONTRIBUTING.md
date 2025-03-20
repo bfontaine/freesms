@@ -2,7 +2,6 @@
 
 ## Run the tests
 
-    python2 tests/test.py
     python3 tests/test.py
 
 ## Release a new version
